@@ -3,6 +3,8 @@
 #define GAMEENGINE_ENGINE_H
 
 #endif //GAMEENGINE_ENGINE_H
+#include <string>
+using namespace std;
 
 
 class Event;
@@ -10,14 +12,15 @@ class Board;
 class Pair;
 class Player;
 class Rule;
+class Engine;
 
 class Clock {
 private:
 	int timeLeft;
 public:
 	virtual void setTime(int time) ;
-	virtual void puase() = 0;
-	virtual void start() = 0;
+	virtual void puase() ;
+	virtual void start() ;
 	virtual int  getTime();
 };
 
@@ -97,4 +100,31 @@ private:
 	Board(Pair size);
 public:
 	int getSize();
+};
+class Player {
+	friend Engine;
+private:
+	string  name;
+	Engine* engine;
+	Clock   clk;
+	Event**  moves;
+	Dice*   dice;
+	Pair    location;
+	int     index;
+	string  state;
+public:
+	virtual Event move() = 0;
+	void setLocation(Pair pair);
+	void setName(string st);
+	string getName();
+
+
+};
+
+class RealPlayer : public Player {
+private:
+	RealPlayer(int index, Pair p, string name, int state);
+public:
+	virtual Event move();
+
 };
