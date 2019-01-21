@@ -10,7 +10,7 @@ class Board;
 class Pair;
 class Player;
 class Rule;
-
+class UIConnection;
 class Clock {
 private:
 	int timeLeft;
@@ -101,4 +101,22 @@ private:
 	void doMove(Event event);
 public:
 	int getSize();
+};
+
+
+class Engine{
+private:
+	Rule * rule;
+	Board * board;
+	Player ** players;
+	int nPlayer;
+	UIConnection * ui;
+public:
+	Event giveMyMove(int index);
+	void start();
+	void end();
+	void addPlayer(string name,bool isAuto);
+	void setBoard();
+	void setRule();
+	Event askMove(int index);
 };
