@@ -112,18 +112,22 @@ class Player {
 	friend Engine;
 private:
 	string  name;
-	Engine* engine;
+	static Engine* engine;
 	Clock   clk;
 	Event**  moves;
 	Dice*   dice;
 	Pair    location;
 	int     index;
-	string  state;
+	int  state;
 public:
+	Player(int index, Pair p, string name, int state);
 	virtual Event move() = 0;
 	void setLocation(Pair pair);
+	Pair getLocation();
 	void setName(string st);
 	string getName();
+	Engine* getEngine();
+	int getIndex();
 
 
 };
