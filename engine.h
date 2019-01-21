@@ -97,7 +97,7 @@ private:
 class Board{
 	friend Engine;
 private:
-	Cell *cells;
+	vector <Cell *> cells;
 	Pair size;
 	Board(Pair size);
 	void doMove(Event event);
