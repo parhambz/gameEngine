@@ -18,10 +18,9 @@ public:
 class Dice{
     friend class Player;
 private:
-    Dice(int nsSde ,int sides[] );
+    Dice(vector<int> sides);
     int value;
-    int nSide;
-    int sides[];
+    vector <int> sides;
 public:
     virtual void update();
     virtual int getValue();
