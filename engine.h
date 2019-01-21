@@ -132,6 +132,7 @@ private:
 public:
 	virtual Event move();
 
+};
 
 class Engine{
 private:
