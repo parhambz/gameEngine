@@ -100,9 +100,11 @@ private:
 	vector <Cell *> cells;
 	Pair size;
 	Board(Pair size);
-	void doMove(Event event);
+	virtual void doMove(Event event)=0;
+	static Pair indexToLocation(int index);
+	virtual int locationToIndex(Pair location);
 public:
-	int getSize();
+	virtual int getSize();
 };
 
 class Player {
