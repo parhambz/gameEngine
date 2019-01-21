@@ -16,9 +16,9 @@ public:
 };
 
 class Dice{
-    friend Player;
+    friend class Player;
 private:
-    Dice(int nsSde=6,int sides={1,2,3,4,5,6});
+    Dice(int nsSde ,int sides[] );
     int value;
     int nSide;
     int sides[];
