@@ -81,13 +81,13 @@ class Cell {
 	friend Rule;
 private:
 	vector<Player *> players;
-	Pair Location;
-	Cell(Pair location);
+	Pair location;
+	Cell(Pair location,bool availablity= true);
+	bool availablity;
 
 	virtual bool  isAvailable();
 	virtual int getNPlayer();
-	virtual void setNPlayer();
-
+	virtual void setAvailablity(bool state);
 	virtual Pair getLocation();
 	virtual void setLocation(Pair location);
 	virtual void removePlayer(int index);
