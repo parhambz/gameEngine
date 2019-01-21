@@ -6,13 +6,13 @@
 #include <string>
 using namespace std;
 
-
+class Engine;
 class Event;
 class Board;
 class Pair;
 class Player;
 class Rule;
-class Engine;
+class UIConnection;
 
 class Clock {
 private:
@@ -80,7 +80,7 @@ class Cell {
 	friend Board;
 	friend Rule;
 private:
-	Player players[];
+	Player ** players;
 	int nPlayer;
 	Pair Location;
 	Cell(Pair location);
@@ -91,16 +91,21 @@ private:
 
 	virtual Pair getLocation();
 	virtual void setLocation(Pair location);
+	virtual void removePlayer(int index);
+	virtual void addPlayer(Player * p);
 };
 
 class Board{
+	friend Engine;
 private:
-	Cell cells[];
+	Cell *cells;
 	Pair size;
 	Board(Pair size);
+	void doMove(Event event);
 public:
 	int getSize();
 };
+
 class Player {
 	friend Engine;
 private:
@@ -126,5 +131,22 @@ private:
 	RealPlayer(int index, Pair p, string name, int state);
 public:
 	virtual Event move();
+
+
+class Engine{
+private:
+	Rule * rule;
+	Board * board;
+	Player ** players;
+	int nPlayer;
+	UIConnection * ui;
+public:
+	Event giveMyMove(int index);
+	void start();
+	void end();
+	void addPlayer(string name,bool isAuto);
+	void setBoard();
+	void setRule();
+	Event askMove(int index);
 
 };
