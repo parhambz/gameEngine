@@ -4,7 +4,8 @@
 
 #endif //GAMEENGINE_ENGINE_H
 
-
+class Board;
+class Rule;
 class Clock {
 private:
 	int timeLeft;
@@ -38,4 +39,21 @@ public:
 	virtual int getY();
 	virtual void setX(int x);
 	virtual void setY(int y);
+};
+
+class Cell {
+	friend Board;
+	friend Rule;
+private:
+	Player players[];
+	int nPlayer;
+	Pair Location;
+	Cell(Pair location);
+
+	virtual bool  isAvailable();
+	virtual int getNPlayer();
+	virtual void setNPlayer();
+
+	virtual Pair getLocation();
+	virtual void setLocation(Pair location);
 };
