@@ -6,12 +6,3 @@
 #define GAMEENGINE_ENGINE_H
 
 #endif //GAMEENGINE_ENGINE_H
-class Dice{
-
-public:
-
-    void update()=0;
-    int getValue(){
-        return this.value;
-    }
-};
