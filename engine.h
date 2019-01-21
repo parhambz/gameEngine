@@ -77,7 +77,7 @@ class Cell {
 	friend Board;
 	friend Rule;
 private:
-	Player players[];
+	Player ** players;
 	int nPlayer;
 	Pair Location;
 	Cell(Pair location);
@@ -88,5 +88,7 @@ private:
 
 	virtual Pair getLocation();
 	virtual void setLocation(Pair location);
+	virtual void removePlayer(int index);
+	virtual void addPlayer(Player * p);
 };
 
