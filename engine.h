@@ -28,3 +28,14 @@ public:
     virtual int getNSide();
 };
 
+class Pair{
+private:
+	int x;
+	int y;
+public:
+	Pair(int x=0,int y =0);
+	virtual int getX();
+	virtual int getY();
+	virtual void setX(int x);
+	virtual void setY(int y);
+};
