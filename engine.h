@@ -137,8 +137,7 @@ class Engine{
 private:
 	Rule * rule;
 	Board * board;
-	Player ** players;
-	int nPlayer;
+	vector<Player *> players;
 	UIConnection * ui;
 public:
 	Event giveMyMove(int index);
