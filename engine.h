@@ -6,6 +6,7 @@
 #define GAMEENGINE_ENGINE_H
 
 #endif //GAMEENGINE_ENGINE_H
+
 class Dice{
     friend Player;
 private:
