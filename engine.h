@@ -80,8 +80,7 @@ class Cell {
 	friend Board;
 	friend Rule;
 private:
-	Player ** players;
-	int nPlayer;
+	vector<Player *> players;
 	Pair Location;
 	Cell(Pair location);
 
