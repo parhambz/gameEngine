@@ -90,3 +90,11 @@ private:
 	virtual void setLocation(Pair location);
 };
 
+class Board{
+private:
+	Cell cells[];
+	Pair size;
+	Board(Pair size);
+public:
+	int getSize();
+};
