@@ -6,6 +6,7 @@
 
 class Event;
 class Board;
+class Pair;
 class Player;
 
 class Clock {
@@ -44,3 +45,16 @@ public:
 	virtual int isOver()=0;
 };
 
+
+class Event {
+	friend Player;
+private:
+	Player* player;
+	Pair loacation;
+	Event(Pair pair);
+public:
+	virtual Player* getPlayer();
+	virtual void    setPlayer();
+	virtual Pair    getLocation();
+	virtual void    setLocation();
+};
