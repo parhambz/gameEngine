@@ -7,6 +7,7 @@
 
 class Event;
 class Board;
+class Pair;
 class Player;
 class Rule;
 
@@ -43,6 +44,21 @@ public:
 	virtual int checkMove(Event move)=0;
 	virtual int checkState(Player player)=0;
 	virtual int isOver()=0;
+};
+
+
+
+class Event {
+	friend Player;
+private:
+	Player* player;
+	Pair loacation;
+	Event(Pair pair);
+public:
+	virtual Player* getPlayer();
+	virtual void    setPlayer();
+	virtual Pair    getLocation();
+	virtual void    setLocation();
 };
 
 class Pair{
