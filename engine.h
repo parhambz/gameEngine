@@ -45,8 +45,9 @@ private:
 public:
 	
 	virtual int checkMove(Event move)=0;
-	virtual int checkState(Player player)=0;
+	virtual int checkState(Player& player)=0;
 	virtual int isOver()=0;
+	virtual int playerTurn() = 0;
 };
 
 
@@ -54,14 +55,14 @@ public:
 class Event {
 	friend Player;
 private:
-	Player* player;
+	Player& player;
 	Pair loacation;
-	Event(Pair pair);
+	Event(Pair pair , Player& player);
 public:
-	virtual Player* getPlayer();
-	virtual void    setPlayer();
+	virtual Player& getPlayer();
+	virtual void    setPlayer(Player& player);
 	virtual Pair    getLocation();
-	virtual void    setLocation();
+	virtual void    setLocation(Pair pair);
 };
 
 class Pair{
