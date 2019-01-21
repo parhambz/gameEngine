@@ -4,6 +4,10 @@
 
 #endif //GAMEENGINE_ENGINE_H
 
+#include <vector>
+#include <string>
+using namespace std;
+
 class Engine;
 class Event;
 class Board;
@@ -119,4 +123,23 @@ public:
 	void setBoard();
 	void setRule();
 	Event askMove(int index);
+};
+class GameStruct{
+public:
+	Pair BoardSize;
+	vector <string>  playersNames;
+};
+class UIConnection{
+	friend Engine;
+private:
+	virtual Event giveMove(int index);
+	virtual void start();
+	virtual void end();
+	virtual GameStruct giveStartData();
+	virtual void setClock(int seconds);
+	virtual void startClock();
+	virtual void endClock();
+	virtual void showDice(vector <Dice> dices);
+	virtual void movePlayer(Event event);
+	virtual void showPlayersStates(vector <Pair> states);
 };
