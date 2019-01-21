@@ -4,6 +4,9 @@
 
 #endif //GAMEENGINE_ENGINE_H
 
+class Event;
+class Board;
+class Player;
 
 class Clock {
 private:
@@ -16,7 +19,7 @@ public:
 };
 
 class Dice{
-    friend class Player;
+    friend Player;
 private:
     Dice(int nsSde ,int sides[] );
     int value;
@@ -26,5 +29,18 @@ public:
     virtual void update();
     virtual int getValue();
     virtual int getNSide();
+};
+
+
+
+class Rule {
+private:
+	Board* board;
+
+public:
+	
+	virtual int checkMove(Event move)=0;
+	virtual int checkState(Player player)=0;
+	virtual int isOver()=0;
 };
 
