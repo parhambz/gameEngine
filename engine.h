@@ -4,7 +4,7 @@
 
 #endif //GAMEENGINE_ENGINE_H
 
-
+class Engine;
 class Event;
 class Board;
 class Pair;
@@ -91,10 +91,12 @@ private:
 };
 
 class Board{
+	friend Engine;
 private:
-	Cell cells[];
+	Cell *cells;
 	Pair size;
 	Board(Pair size);
+	void doMove(Event event);
 public:
 	int getSize();
 };
