@@ -66,6 +66,8 @@ void Engine::start() {
             ui->wrongMove();
             mv=players[turn]->move();
         }
+        players[turn]->clk.puase();
+        ui->endClock();
         if(players[turn]->clk.getTime()>0){
             board->doMove(mv);
             ui->movePlayer(mv);

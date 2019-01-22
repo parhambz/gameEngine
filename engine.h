@@ -170,6 +170,9 @@ public:
 class UIConnection{
 	friend Engine;
 private:
+	static UIConnection * instance;
+	//Todo: initialize the instance;
+	static UIConnection * getInstance();
 	virtual Event giveMove(int index);
 	virtual void start();
 	virtual void end();
@@ -180,4 +183,6 @@ private:
 	virtual void showDice(vector <Dice> dices);
 	virtual void movePlayer(Event event);
 	virtual void showPlayersStates(vector <Pair> states);
+	virtual void wrongMove();
+	virtual void shoPlayerState(Player p);
 };
