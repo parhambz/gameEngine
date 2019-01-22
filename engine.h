@@ -115,8 +115,8 @@ private:
 	string  name;
 	static Engine* engine;
 	Clock   clk;
-	Event**  moves;
-	Dice*   dice;
+	vector<Event*>  moves;
+	vector<Dice>   dice;
 	Pair    location;
 	int     index;
 	int  state;
