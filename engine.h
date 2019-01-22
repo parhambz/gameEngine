@@ -41,7 +41,9 @@ public:
 class Rule {
 private:
 	static Board* board;
-	static Rule* Inctance;
+protected:
+
+	static Rule* Instance;
 
 public:
 	
@@ -118,7 +120,7 @@ public:
 
 class Player {
 	friend Engine;
-private:
+protected:
 	string  name;
 	static Engine* engine;
 	Clock   clk;
