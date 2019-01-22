@@ -41,6 +41,7 @@ public:
 class Rule {
 private:
 	Board* board;
+	Rule*  Inctance;
 
 public:
 	
