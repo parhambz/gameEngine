@@ -16,6 +16,7 @@ Engine::Engine(){
 }
 void Engine::setGameStruct() {
     *gs=ui->giveStartData();
+    if(rule->checkGameStruct(*gs)){}else{setGameStruct();}
 }
 void Engine::setBoard(Board * b) {
     board=b;
@@ -101,3 +102,5 @@ void Engine::setPlayers() {
         addPlayer(gs->playersNames[i],gs->autoStates[i],i);
     }
 }
+Board* Engine::getBoardInstance() {return board;}
+Rule* Engine::getRuleInstance() {return rule;}

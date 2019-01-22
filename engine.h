@@ -170,6 +170,8 @@ public:
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
 	virtual void setPlayers();
+    virtual Board* getBoardInstance();
+    virtual Rule * getRuleInstance();
     ~Engine();
 };
 class GameStruct{
