@@ -159,7 +159,7 @@ protected:
     Engine(Pair size);
 public:
   static Engine * getInstance();
-	virtual Event giveMyMove(int index);
+	virtual Pair giveMyMove(int index);
 	virtual void start();
 	virtual void end();
 	virtual void addPlayer(string name,bool isAuto);
