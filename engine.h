@@ -96,15 +96,18 @@ private:
 
 class Board{
 	friend Engine;
-private:
+	friend Rule;
+protected:
 	vector <Cell *> cells;
 	Pair size;
 	Board(Pair size);
+	Board * instance;
 	virtual void doMove(Event event)=0;
 	static Pair indexToLocation(int index);
 	virtual int locationToIndex(Pair location);
 public:
 	virtual int getSize();
+	~Board();
 };
 
 class Player {
