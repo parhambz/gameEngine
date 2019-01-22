@@ -11,15 +11,20 @@ public class MenuUi extends VBox {
     private double SPACE_SIZE = 10;
     ObservableList list;
 
-    MenuUi(){
+    MenuUi() {
         list = this.getChildren();
         this.setSpacing(SPACE_SIZE);
-        System.out.println("Menu Created!");
+        Log.d("Game", "Menu Created");
     }
 
-    public void addButton(Button button){
+    public void addButton(Button button) {
         list.add(button);
-        System.out.println(button.getText().toString() + " Button Added to Menu!");
+        Log.d("Button Added to Menu", button.getText().toString());
+    }
+
+    public void addAllButtons(Button... buttons){
+        list.addAll(buttons);
+        Log.d("Buttons Added to Menu", "All Buttons added to menu");
     }
 
 }
