@@ -178,6 +178,7 @@ class GameStruct{
 public:
 	Pair BoardSize;
 	vector <string>  playersNames;
+    vector<bool>isAuto;
 };
 class UIConnection{
 	friend Engine;
@@ -185,10 +186,10 @@ private:
 	static UIConnection * instance;
 	//Todo: initialize the instance;
 	static UIConnection * getInstance();
-	virtual Event giveMove(int index);
+	virtual Pair & giveMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual GameStruct giveStartData();
+	virtual GameStruct & giveStartData();
 	virtual void setClock(int seconds);
 	virtual void startClock();
 	virtual void endClock();
@@ -196,5 +197,4 @@ private:
 	virtual void movePlayer(Event event);
 	virtual void showPlayersStates(vector <Pair> states);
 	virtual void wrongMove();
-	virtual void shoPlayerState(Player & p);
 };
