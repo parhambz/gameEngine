@@ -196,5 +196,5 @@ private:
 	virtual void movePlayer(Event event);
 	virtual void showPlayersStates(vector <Pair> states);
 	virtual void wrongMove();
-	virtual void shoPlayerState(Player p);
+	virtual void shoPlayerState(Player & p);
 };
