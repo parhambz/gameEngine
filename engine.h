@@ -40,13 +40,17 @@ public:
 
 class Rule {
 private:
-	Board* board;
+	static Board* board;
+	static Rule* Inctance;
 
 public:
 	
-	virtual int checkMove(Event move)=0;
-	virtual int checkState(Player player)=0;
-	virtual int isOver()=0;
+	virtual bool checkMove(Event move)=0;
+	virtual bool checkState(Player& player)=0;
+	virtual bool isOver()=0;
+	virtual bool playerTurn() = 0;
+	virtual bool getPlayerTime()=0;
+	virtual bool checkGameStruct(GameStruct g) = 0;
 };
 
 
@@ -54,14 +58,14 @@ public:
 class Event {
 	friend Player;
 private:
-	Player* player;
+	Player& player;
 	Pair loacation;
-	Event(Pair pair);
+	Event(Pair pair , Player& player);
 public:
-	virtual Player* getPlayer();
-	virtual void    setPlayer();
+	virtual Player& getPlayer();
+	virtual void    setPlayer(Player& player);
 	virtual Pair    getLocation();
-	virtual void    setLocation();
+	virtual void    setLocation(Pair pair);
 };
 
 class Pair{
@@ -116,18 +120,22 @@ class Player {
 	friend Engine;
 private:
 	string  name;
-	Engine* engine;
+	static Engine* engine;
 	Clock   clk;
-	Event**  moves;
-	Dice*   dice;
+	vector<Event>  moves;
 	Pair    location;
 	int     index;
-	string  state;
+	int  state;
 public:
+	Player(int index, Pair p, string name, int state);
 	virtual Event move() = 0;
-	void setLocation(Pair pair);
+	void setLocation(Event move);
+	Pair getLocation();
 	void setName(string st);
 	string getName();
+	Engine* getEngine();
+	int getIndex();
+	void addMove(Event move);
 
 
 };
@@ -150,7 +158,7 @@ protected:
     GameStruct * gs;
     Engine(Pair size);
 public:
-	static Engine * getInstance();
+  static Engine * getInstance();
 	virtual Event giveMyMove(int index);
 	virtual void start();
 	virtual void end();
