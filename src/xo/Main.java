@@ -4,21 +4,32 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+import java.io.FileInputStream;
 
 public class Main extends Application {
-    static String MAIN_THEME = Utils.LIGHT_THEME;
+    static String MAIN_THEME = Utils.DARK_THEME;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        //xo logo
+        Image logo_light = new Image(new FileInputStream(Utils.LOGO_LIGHT_PATH));
+        Image logo_dark = new Image(new FileInputStream(Utils.LOGO_DARK_PATH));
+
+        ImageView logoView = new ImageView(logo_dark);
+        logoView.setFitWidth(200);
+        logoView.setFitHeight(120);
 
 
         //making "about us" scene
@@ -33,13 +44,16 @@ public class Main extends Application {
 
         //making "menu" scene
         MenuUi menuUi = new MenuUi();
+        menuUi.setAlignment(Pos.CENTER);
         menuUi.getStylesheets().add(MAIN_THEME);
         Button oneByOne = new Button("1 vs. 1");
         Button oneByBot = new Button("1 vs. Bot");
         Button about = new Button("About Us");
         Button exit = new Button("Exit");
 
+        menuUi.addImage(logoView);
         menuUi.addAllButtons(oneByOne, oneByBot, about, exit);
+
 
         //scenes
         Scene about_scene = new Scene(aboutUi, Utils.M_W_SIZE, Utils.M_H_SIZE);

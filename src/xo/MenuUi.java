@@ -3,6 +3,8 @@ package xo;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 
@@ -25,6 +27,16 @@ public class MenuUi extends VBox {
     public void addAllButtons(Button... buttons){
         list.addAll(buttons);
         Log.d("Buttons Added to Menu", "All Buttons added to menu");
+    }
+
+    public void addImage(ImageView imageView){
+        list.add(imageView);
+        Log.d("Image Added to Menu", "Image added");
+    }
+
+    public void addAllImage(ImageView...imageViews){
+        list.addAll(imageViews);
+        Log.d("Images Added to Menu", "All Images added to menu");
     }
 
 }

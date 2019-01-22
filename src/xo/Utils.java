@@ -21,4 +21,8 @@ public class Utils {
     public static String LIGHT_THEME = "xo/Light.css";
     public static String DARK_THEME = "xo/Dark.css";
 
+    //paths
+    public static String LOGO_LIGHT_PATH = "src/res/xolight.png";
+    public static String LOGO_DARK_PATH = "src/res/xodark.png";
+
 }
