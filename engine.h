@@ -99,9 +99,11 @@ class Board{
 	friend Rule;
 protected:
 	vector <Cell *> cells;
+	vector <Dice> dices;
 	Pair size;
 	Board(Pair size);
-	Board * instance;
+	static Board * instance;
+	virtual void createDice()=0;
 	virtual void doMove(Event event)=0;
 	static Pair indexToLocation(int index);
 	virtual int locationToIndex(Pair location);
