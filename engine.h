@@ -48,6 +48,7 @@ public:
 	virtual int checkState(Player& player)=0;
 	virtual int isOver()=0;
 	virtual int playerTurn() = 0;
+	virtual int getPlayerTime()=0;
 };
 
 
