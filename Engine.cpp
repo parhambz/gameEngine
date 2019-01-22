@@ -4,7 +4,7 @@
 
 #include "engine.h"
 Engine * Engine::instance= nullptr;
-Event Engine::giveMyMove(int index) {
+Pair Engine::giveMyMove(int index) {
     return ui->giveMove(index);
 }
 Engine::Engine(){
