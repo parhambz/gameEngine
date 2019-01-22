@@ -184,7 +184,6 @@ class UIConnection{
 	friend Engine;
 private:
 	static UIConnection * instance;
-	//Todo: initialize the instance;
 	static UIConnection * getInstance();
 	virtual Pair & giveMove(int index);
 	virtual void start();

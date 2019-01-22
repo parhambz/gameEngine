@@ -6,6 +6,7 @@
 // Created by Parham Bagherzadeh on 1/22/2019 AD.
 //
 #include "engine.h"
+UIConnection* UIConnection::instance=nullptr;
 void UIConnection::showPlayersStates(vector<Pair> states) {
     string str;
     for(int i=0;i<states.size();i++){
