@@ -145,17 +145,18 @@ protected:
     GameStruct * gs;
     Engine(Pair size);
 public:
-    virtual static Engine * getInstance();
+	static Engine * getInstance();
 	virtual Event giveMyMove(int index);
 	virtual void start();
 	virtual void end();
 	virtual void addPlayer(string name,bool isAuto);
-	virtual void setBoard();
-	virtual void setRule();
-    virtual void setUIConnection();
+	virtual void setBoard(Board * b);
+	virtual void setRule(Rule * r);
+    virtual void setUIConnection(UIConnection * u);
     virtual void setGameStruct();
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
+	virtual void setPlayers();
     ~Engine();
 };
 class GameStruct{

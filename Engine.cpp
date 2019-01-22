@@ -12,18 +12,19 @@ Engine::Engine(){
     setUIConnection();
     setGameStruct();
     setBoard();
+    setPlayers();
 }
 void Engine::setGameStruct() {
     *gs=ui->giveStartData();
 }
-void Engine::setBoard() {
-    board=new Board(gs->BoardSize);
+void Engine::setBoard(Board * b) {
+    board=b;
 }
-void Engine::setUIConnection() {
-    ui=new UIConnection();
+void Engine::setUIConnection(UIConnection * u) {
+    ui=u;
 }
-void Engine::setRule() {
-    rule=new Rule();
+void Engine::setRule(Rule * r) {
+    rule=r;
 }
 Engine* Engine::getInstance() {
     if (instance!= nullptr){
@@ -32,11 +33,11 @@ Engine* Engine::getInstance() {
         instance=new Engine();
     }
 }
-void Engine::addPlayer(string name, bool isAuto) {
+void Engine::addPlayer(string name, bool isAuto,int index) {
     if (isAuto== false) {
-        this->players.push_back(new RealPlayer(name));
+        this->players.push_back(new RealPlayer(index,Pair (-1,-1),name,0));
     }else{
-        this->players.push_back(new AutoPlayer(name));
+        this->players.push_back(new AutoPlayer(index,Pair (-1,-1),name,0));
     }
     }
 Event Engine::askMove(int index) {
@@ -50,7 +51,7 @@ void Engine::start() {
     while(rule->isOver()==false){
         //TODO: ask turn from Rule
         //todo:sendDiceToUI(players[turn].dices);
-        //todo :int seconds=rule.getPlayerTime(turn);
+        //todo :int seconds=rule.getPlayerTime();
         players[turn]->clk.setTime(seconds);
         players[turn]->clk.start();
         ui->setClock(seconds);
@@ -92,4 +93,9 @@ Engine::~Engine() {
     delete(board);
     delete(rule);
     delete(ui);
+}
+void Engine::setPlayers() {
+    for(int i=0;i<gs->playersNames.size();i++){
+        addPlayer(gs->playersNames[i],gs->autoStates[i],i);
+    }
 }
