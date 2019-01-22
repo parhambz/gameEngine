@@ -5,9 +5,8 @@ package xo;
  */
 public class Log {
 
-    public static void d(String tag,String text){
-        System.out.println(tag);
-        System.out.println(text);
+    public static void d(String tag, String text) {
+        System.out.println("# " + tag + ": " + text);
     }
 
 }
