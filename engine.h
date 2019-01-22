@@ -26,7 +26,7 @@ public:
 };
 
 class Dice{
-    friend Player;
+    friend Board;
 private:
     Dice(vector<int> sides);
     int value;
