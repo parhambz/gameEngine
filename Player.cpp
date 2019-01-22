@@ -34,3 +34,7 @@ void Player::addMove(Event move) {
 
 	moves.push_back(move);
 }
+
+int Player::getState() {
+	return state;
+}
