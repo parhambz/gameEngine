@@ -49,9 +49,9 @@ void Engine::start() {
     int turn=0;
 
     while(rule->isOver()==false){
-        //TODO: ask turn from Rule
-        //todo:sendDiceToUI(players[turn].dices);
-        //todo :int seconds=rule.getPlayerTime();
+        turn =rule->playerTurn();
+        sendDiceToUI(board->dices);
+        int seconds=rule.getPlayerTime();
         players[turn]->clk.setTime(seconds);
         players[turn]->clk.start();
         ui->setClock(seconds);
@@ -86,7 +86,7 @@ void Engine::end() {
     ui->end();
     vector<Pair> states;
     for (int i=0;i<players.size();i++){
-        //todo:Pair state (players[i]->index,players[i].getState());
+        todo:Pair state (players[i]->index,players[i]->state);
         states.push_back(state);
     }
     ui->showPlayersStates(states);
