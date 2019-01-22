@@ -5,8 +5,9 @@ Engine* Player::engine = NULL;
 Player::Player(int index, Pair p, string name, int state):
 	index(index), location(p) , name(name) , state(state) {}
 
-void Player::setLocation(Pair p) {
-	location = p;
+void Player::setLocation(Event move) {
+	location = move.getLocation;
+	addMove(move);
 }
 
 Pair Player::getLocation() {
@@ -27,4 +28,9 @@ Engine* Player::getEngine() {
 
 int Player::getIndex() {
 	return index;
+}
+
+void Player::addMove(Event move) {
+
+	moves.push_back(move);
 }
