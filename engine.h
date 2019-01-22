@@ -45,11 +45,12 @@ private:
 
 public:
 	
-	virtual int checkMove(Event move)=0;
-	virtual int checkState(Player& player)=0;
-	virtual int isOver()=0;
-	virtual int playerTurn() = 0;
-	virtual int getPlayerTime()=0;
+	virtual bool checkMove(Event move)=0;
+	virtual bool checkState(Player& player)=0;
+	virtual bool isOver()=0;
+	virtual bool playerTurn() = 0;
+	virtual bool getPlayerTime()=0;
+	virtual bool checkGameStruct(GameStruct g) = 0;
 };
 
 
@@ -116,7 +117,7 @@ private:
 	string  name;
 	static Engine* engine;
 	Clock   clk;
-	vector<Event*>  moves;
+	vector<Event>  moves;
 	vector<Dice>   dice;
 	Pair    location;
 	int     index;
@@ -124,12 +125,13 @@ private:
 public:
 	Player(int index, Pair p, string name, int state);
 	virtual Event move() = 0;
-	void setLocation(Pair pair);
+	void setLocation(Event move);
 	Pair getLocation();
 	void setName(string st);
 	string getName();
 	Engine* getEngine();
 	int getIndex();
+	void addMove(Event move);
 
 
 };
