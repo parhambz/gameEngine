@@ -100,15 +100,20 @@ private:
 
 class Board{
 	friend Engine;
-private:
+	friend Rule;
+protected:
 	vector <Cell *> cells;
+	vector <Dice> dices;
 	Pair size;
 	Board(Pair size);
+	static Board * instance;
+	virtual void createDice()=0;
 	virtual void doMove(Event event)=0;
 	static Pair indexToLocation(int index);
 	virtual int locationToIndex(Pair location);
 public:
 	virtual int getSize();
+	~Board();
 };
 
 class Player {
@@ -153,17 +158,18 @@ protected:
     GameStruct * gs;
     Engine(Pair size);
 public:
-    static Engine * getInstance();
+  static Engine * getInstance();
 	virtual Event giveMyMove(int index);
 	virtual void start();
 	virtual void end();
 	virtual void addPlayer(string name,bool isAuto);
-	virtual void setBoard();
-	virtual void setRule();
-    virtual void setUIConnection();
+	virtual void setBoard(Board * b);
+	virtual void setRule(Rule * r);
+    virtual void setUIConnection(UIConnection * u);
     virtual void setGameStruct();
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
+	virtual void setPlayers();
     ~Engine();
 };
 class GameStruct{
@@ -174,6 +180,9 @@ public:
 class UIConnection{
 	friend Engine;
 private:
+	static UIConnection * instance;
+	//Todo: initialize the instance;
+	static UIConnection * getInstance();
 	virtual Event giveMove(int index);
 	virtual void start();
 	virtual void end();
@@ -184,4 +193,6 @@ private:
 	virtual void showDice(vector <Dice> dices);
 	virtual void movePlayer(Event event);
 	virtual void showPlayersStates(vector <Pair> states);
+	virtual void wrongMove();
+	virtual void shoPlayerState(Player p);
 };
