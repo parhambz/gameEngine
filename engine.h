@@ -141,20 +141,27 @@ public:
 };
 
 class Engine{
-private:
+protected:
 	Rule * rule;
 	Board * board;
 	vector<Player *> players;
 	UIConnection * ui;
+    static Engine * instance;
+    GameStruct * gs;
+    Engine(Pair size);
 public:
-	Event giveMyMove(int index);
-	void start();
-	void end();
-	void addPlayer(string name,bool isAuto);
-	void setBoard();
-	void setRule();
-	Event askMove(int index);
-
+    virtual static Engine * getInstance();
+	virtual Event giveMyMove(int index);
+	virtual void start();
+	virtual void end();
+	virtual void addPlayer(string name,bool isAuto);
+	virtual void setBoard();
+	virtual void setRule();
+    virtual void setUIConnection();
+    virtual void setGameStruct();
+	virtual Event askMove(int index);
+    virtual void sendDiceToUI(vector<Dice> dices);
+    ~Engine();
 };
 class GameStruct{
 public:
