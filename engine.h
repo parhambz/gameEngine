@@ -40,8 +40,8 @@ public:
 
 class Rule {
 private:
-	Board* board;
-	Rule*  Inctance;
+	static Board* board;
+	static Rule* Inctance;
 
 public:
 	
@@ -118,7 +118,6 @@ private:
 	static Engine* engine;
 	Clock   clk;
 	vector<Event>  moves;
-	vector<Dice>   dice;
 	Pair    location;
 	int     index;
 	int  state;
@@ -154,7 +153,7 @@ protected:
     GameStruct * gs;
     Engine(Pair size);
 public:
-    virtual static Engine * getInstance();
+    static Engine * getInstance();
 	virtual Event giveMyMove(int index);
 	virtual void start();
 	virtual void end();
