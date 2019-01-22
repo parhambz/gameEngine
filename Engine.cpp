@@ -35,7 +35,7 @@ Engine* Engine::getInstance() {
     }
 }
 void Engine::addPlayer(string name, bool isAuto,int index) {
-    if (isAuto== false) {
+    if (!isAuto) {
         this->players.push_back(new RealPlayer(index,Pair (-1,-1),name,0));
     }else{
         this->players.push_back(new AutoPlayer(index,Pair (-1,-1),name,0));
@@ -49,7 +49,7 @@ void Engine::start() {
     ui->start();
     int turn=0;
 
-    while(rule->isOver()==false){
+    while(!rule->isOver()){
         turn =rule->playerTurn();
         sendDiceToUI(board->dices);
         int seconds=rule.getPlayerTime();
@@ -58,7 +58,7 @@ void Engine::start() {
         ui->setClock(seconds);
         ui->startClock();
         Event mv=players[turn]->move();
-        while(rule->checkMove(mv)==false){
+        while(!rule->checkMove(mv)){
             if(players[turn]->clk.getTime()<0){
                 players[turn]->clk.puase();
                 ui->endClock();
