@@ -1,0 +1,28 @@
+/*
+Space grey
+#343d46
+#4f5b66
+#65737e
+#a7adba
+#c0c5ce
+*/
+
+.root {
+    -fx-background-color: #343d46;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#4f5b66, #65737e);
+    -fx-text-fill: #fff;
+    -fx-background-radius: 20;
+}
+
+.button:hover{
+    -fx-background-color: linear-gradient(#65737e,#4f5b66);
+    -fx-text-fill: #fff;
+    -fx-background-radius: 20;
+}
+
+.ctext{
+    -fx-text-fill: #fff;
+}

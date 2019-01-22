@@ -1,0 +1,27 @@
+/*
+#d2d4dc button 1
+#afafaf
+#f8f8fa back,light text
+#e5e6eb
+#c0c2ce button 2
+*/
+
+.root {
+    -fx-background-color: #f8f8fa;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#d2d4dc, #c0c2ce);
+    -fx-text-fill: #f8f8fa;
+    -fx-background-radius: 20;
+}
+
+.button:hover{
+    -fx-background-color: linear-gradient(#c0c2ce,#d2d4dc);
+    -fx-text-fill: #f8f8fa;
+    -fx-background-radius: 20;
+}
+
+.text .label{
+    -fx-text-fill: #afafaf;
+}

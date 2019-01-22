@@ -14,7 +14,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application{
+public class Main extends Application {
+    static String MAIN_THEME = Utils.LIGHT_THEME;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -23,14 +24,16 @@ public class Main extends Application{
         //making "about us" scene
         AboutUi aboutUi = new AboutUi();
         Text text = new Text(Utils.LOREM);
-        text.setWrappingWidth(Utils.M_W_SIZE-20);
+        text.setWrappingWidth(Utils.M_W_SIZE - 20);
         Button back = new Button("Back");
         aboutUi.addText(text);
         aboutUi.addButton(back);
         aboutUi.setPadding(new Insets(Utils.M_P_SIZE));
+        aboutUi.getStylesheets().add(MAIN_THEME);
 
         //making "menu" scene
         MenuUi menuUi = new MenuUi();
+        menuUi.getStylesheets().add(MAIN_THEME);
         Button oneByOne = new Button("1 vs. 1");
         Button oneByBot = new Button("1 vs. Bot");
         Button about = new Button("About Us");
@@ -39,8 +42,8 @@ public class Main extends Application{
         menuUi.addAllButtons(oneByOne, oneByBot, about, exit);
 
         //scenes
-        Scene about_scene = new Scene(aboutUi,Utils.M_W_SIZE,Utils.M_H_SIZE);
-        Scene menu_scene = new Scene(menuUi,Utils.M_W_SIZE,Utils.M_H_SIZE);
+        Scene about_scene = new Scene(aboutUi, Utils.M_W_SIZE, Utils.M_H_SIZE);
+        Scene menu_scene = new Scene(menuUi, Utils.M_W_SIZE, Utils.M_H_SIZE);
 
         //onActions
         about.setOnAction(new EventHandler<ActionEvent>() {
