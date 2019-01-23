@@ -52,7 +52,7 @@ void Engine::start() {
     while(!rule->isOver()){
         turn =rule->playerTurn();
         sendDiceToUI(board->dices);
-        int seconds=rule.getPlayerTime();
+        int seconds=rule->getPlayerTime();
         players[turn]->clk.setTime(seconds);
         players[turn]->clk.start();
         ui->setClock(seconds);

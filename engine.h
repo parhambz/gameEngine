@@ -39,19 +39,17 @@ public:
 
 
 class Rule {
-private:
-	static Board* board;
 protected:
-
+	static Board* board;
 	static Rule* Instance;
 
 public:
 	
 	virtual bool checkMove(Event move)=0;
 	virtual bool checkState(Player& player)=0;
-	virtual bool isOver()=0;
-	virtual bool playerTurn() = 0;
-	virtual bool getPlayerTime()=0;
+	virtual bool isOver(vector<Player&> players)=0;
+	virtual int playerTurn() = 0;
+	virtual int getPlayerTime()=0;
 	virtual bool checkGameStruct(GameStruct g) = 0;
 };
 
@@ -84,13 +82,14 @@ public:
 
 class Cell {
 	friend Board;
-	friend Rule;
+	friend class Rule;
 private:
 	vector<Player *> players;
 	Pair location;
 	Cell(Pair location,bool availablity= true);
 	bool availablity;
 
+public:
 	virtual bool  isAvailable();
 	virtual int getNPlayer();
 	virtual void setAvailablity(bool state);
@@ -102,9 +101,9 @@ private:
 
 class Board{
 	friend Engine;
-	friend Rule;
+	friend class Rule;
 protected:
-	vector <Cell *> cells;
+	
 	vector <Dice> dices;
 	Pair size;
 	Board(Pair size);
@@ -112,9 +111,11 @@ protected:
 	virtual void createDice()=0;
 	virtual void doMove(Event event)=0;
 	static Pair indexToLocation(int index);
-	virtual int locationToIndex(Pair location);
+	
 public:
+	vector <Cell *> cells;
 	virtual int getSize();
+	virtual int locationToIndex(Pair location);
 	~Board();
 };
 
@@ -138,6 +139,7 @@ public:
 	Engine* getEngine();
 	int getIndex();
 	void addMove(Event move);
+	int getState();
 
 
 };
