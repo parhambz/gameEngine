@@ -33,3 +33,7 @@ void Cell::setLocation(Pair location) {
 void Cell::setAvailablity(bool state) {
     this->availablity=state;
 }
+
+vector<Player*> Cell::getPlayers() {
+	return players;
+}
