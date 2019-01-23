@@ -14,3 +14,7 @@ class DoozBoard :public Board{
     virtual void createDice();
     virtual void doMove(Event event);
 };
+
+class DoozRule :public Rule {
+
+};
