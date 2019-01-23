@@ -101,6 +101,7 @@ public:
 	virtual void setLocation(Pair location);
 	virtual void removePlayer(int index);
 	virtual void addPlayer(Player * p);
+	virtual vector<Player*> getPlayers();
 };
 
 class Board{
