@@ -10,5 +10,7 @@
 #include "engine.h"
 
 class DoozBoard :public Board{
-
+    virtual void start();
+    virtual void createDice();
+    virtual void doMove(Event event);
 };

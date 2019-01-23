@@ -103,7 +103,7 @@ class Board{
 	friend Engine;
 	friend class Rule;
 protected:
-	
+	virtual void start()=0;
 	vector <Dice> dices;
 	Pair size;
 	Board(Pair size);
