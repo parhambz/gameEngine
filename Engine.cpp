@@ -47,6 +47,7 @@ Event Engine::askMove(int index) {
 void Engine::sendDiceToUI(vector<Dice> dices) {}
 void Engine::start() {
     ui->start();
+    board->start();
     int turn=0;
 
     while(!rule->isOver()){

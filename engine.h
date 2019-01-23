@@ -7,6 +7,7 @@
 #include <string>
 using namespace std;
 
+class GameStruct;
 class Engine;
 class Event;
 class Board;
@@ -14,6 +15,9 @@ class Pair;
 class Player;
 class Rule;
 class UIConnection;
+class Dice;
+class Cell;
+class Clock;
 
 class Clock {
 private:
