@@ -1,4 +1,4 @@
-#include "engine.h"
+#include "game.h"
 
 RealPlayer::RealPlayer (int index, Pair p, string name, int state):
 	Player(index, p, name, state){}
@@ -7,7 +7,8 @@ RealPlayer::RealPlayer (int index, Pair p, string name, int state):
 
 Event RealPlayer::move() {
 
-	Event move(getEngine()->giveMyMove(getIndex()), this);
+	Pair p = getEngine()->giveMyMove(getIndex());
+	Event move(p,this); // ?
 
 	return move;
 }

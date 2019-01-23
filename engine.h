@@ -62,12 +62,12 @@ public:
 class Event {
 	friend Player;
 private:
-	Player& player;
+	Player* player;
 	Pair loacation;
-	Event(Pair pair , Player& player);
+	Event(Pair pair , Player* player);
 public:
-	virtual Player& getPlayer();
-	virtual void    setPlayer(Player& player);
+	virtual Player* getPlayer();
+	virtual void    setPlayer(Player* player);
 	virtual Pair    getLocation();
 	virtual void    setLocation(Pair pair);
 };
@@ -142,20 +142,18 @@ public:
 	void setName(string st);
 	string getName();
 	Engine* getEngine();
+	void setEngine(Engine* eng);
 	int getIndex();
+	void setIndex(int In);
 	void addMove(Event move);
 	int getState();
+	void setState(int st);
 
 
-};
-
-class RealPlayer : public Player {
-private:
-	RealPlayer(int index, Pair p, string name, int state);
-public:
-	virtual Event move();
 
 };
+
+
 
 class Engine{
 protected:

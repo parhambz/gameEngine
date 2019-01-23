@@ -14,3 +14,29 @@ class DoozBoard :public Board{
     virtual void createDice();
     virtual void doMove(Event event);
 };
+
+class DoozRule :public Rule {
+	int turn;
+	DoozRule();
+public:
+	bool checkMove(Event move);
+	bool checkLefttoRight(Pair location);
+	bool checkUptoDown(Pair location);
+	bool checkGhotr1(Pair location);
+	bool checkGhotr2(Pair location);
+	bool checkState(Player& player);
+	bool isOver(vector<Player&> players);
+	int playerTurn();
+	int getPlayerTime();
+	bool checkGameStruct(GameStruct g);
+	static Rule* getInstance();
+
+};
+
+class RealPlayer : public Player {
+private:
+	RealPlayer(int index, Pair p, string name, int state);
+public:
+	virtual Event move();
+
+};

@@ -26,8 +26,18 @@ Engine* Player::getEngine() {
 	return engine;
 }
 
+void Player::setEngine(Engine* eng) {
+	engine = eng;
+}
+
+
+
 int Player::getIndex() {
 	return index;
+}
+
+void Player::setIndex(int In) {
+	index = In;
 }
 
 void Player::addMove(Event move) {
@@ -37,4 +47,8 @@ void Player::addMove(Event move) {
 
 int Player::getState() {
 	return state;
+}
+
+void Player::setState(int st) {
+	state = st;
 }

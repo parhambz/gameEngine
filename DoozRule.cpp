@@ -1,12 +1,10 @@
-#include "Rule.cpp"
+#include "game.h"
 
-class DoozRule : public Rule {
-	int turn;
 
-	DoozRule() :turn(1) {}
-public:
 
-	virtual bool checkMove(Event move) {
+ DoozRule::DoozRule():turn(1) {}
+
+ bool DoozRule::checkMove(Event move) {
 		int index = board->locationToIndex(move.getLocation());
 		if (board->cells[index]->isAvailable()) {
 			return true;
@@ -15,7 +13,7 @@ public:
 
 	}
 
-	bool checkLefttoRight(Pair location) {
+ bool DoozRule::checkLefttoRight(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
 			if (location.getX() + i <= 6)
@@ -67,7 +65,8 @@ public:
 		}
 
 	}
-	bool checkUptoDown(Pair location) {
+
+ bool DoozRule::checkUptoDown(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
 			if (location.getY() + i <= 6)
@@ -118,7 +117,8 @@ public:
 			}
 		}
 	}
-	bool checkGhotr1(Pair location) {
+
+ bool DoozRule::checkGhotr1(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
 			if (location.getY() + i <= 6 && location.getX() + i <= 6)
@@ -169,7 +169,8 @@ public:
 			}
 		}
 	}
-	bool checkGhotr2(Pair location) {
+
+ bool DoozRule::checkGhotr2(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
 			if (location.getY() + i <= 6 && location.getX() - i >= 0)
@@ -221,7 +222,7 @@ public:
 		}
 	}
 
-	virtual bool checkState(Player& player) {
+	 bool DoozRule::checkState(Player& player) {
 
 		if (checkLefttoRight(player.getLocation())) {
 			return true;
@@ -242,7 +243,7 @@ public:
 		}
 	}
 
-	bool isOver(vector<Player&> players) {
+ bool DoozRule::isOver(vector<Player&> players) {
 		for (auto iter = players.begin(); iter != players.end(); iter++) {
 			if ((*iter).getState() == 2) {
 				return true;
@@ -254,7 +255,7 @@ public:
 		return false;
 	}
 
-	virtual int playerTurn() {
+ int DoozRule::playerTurn() {
 		if (turn == 0) {
 			turn = 1;
 			return turn;
@@ -266,19 +267,11 @@ public:
 	}
 
 
-
-
-
-	virtual int getPlayerTime() {
+ int DoozRule::getPlayerTime() {
 		return 10;
 	}
 
-
-
-
-
-
-	virtual bool checkGameStruct(GameStruct g) {
+ bool DoozRule::checkGameStruct(GameStruct g) {
 
 		int NumberOfPlayers = 0;
 		for (auto iter = g.playersNames.begin(); iter != g.playersNames.end(); iter++) {
@@ -295,11 +288,7 @@ public:
 		}
 	}
 
-
-
-
-
-	static Rule* getInstance() {
+ Rule* DoozRule::getInstance() {
 		if (Instance != NULL) {
 			return Instance;
 		}
@@ -308,4 +297,4 @@ public:
 		}
 	}
 
-};
+
