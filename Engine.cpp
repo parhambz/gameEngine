@@ -3,20 +3,24 @@
 //
 
 #include "engine.h"
+#include "xo_UiConnection.h"
+
 Engine * Engine::instance= nullptr;
 Pair Engine::giveMyMove(int index) {
     return ui->giveMove(index);
 }
 Engine::Engine(){
-    setRule();
+/*    setRule();
     setUIConnection();
     setGameStruct();
     setBoard();
-    setPlayers();
+    setPlayers();*/
 }
-void Engine::setGameStruct() {
-    *gs=ui->giveStartData();
-    if(rule->checkGameStruct(*gs)){}else{setGameStruct();}
+void Engine::setGameStruct(int x,int y, string name1,string name2,bool isAuto1,bool isAuto2) {
+    *gs=new GameStruct();
+    Pair p= new Pair(x,y);
+    gs->BoardSize=*p;
+
 }
 void Engine::setBoard(Board * b) {
     board=b;
@@ -45,7 +49,12 @@ Event Engine::askMove(int index) {
     return players[index]->move();
 }
 void Engine::sendDiceToUI(vector<Dice> dices) {}
-void Engine::start() {
+
+bool move(){
+
+
+}
+void Engine::starts() {
     ui->start();
     board->start();
     int turn=0;
@@ -105,3 +114,8 @@ void Engine::setPlayers() {
 }
 Board* Engine::getBoardInstance() {return board;}
 Rule* Engine::getRuleInstance() {return rule;}
+
+
+void Engine::start() {
+    board->start();
+}

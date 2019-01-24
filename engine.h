@@ -18,6 +18,7 @@ class UIConnection;
 class Dice;
 class Cell;
 class Clock;
+class xo_UiConnection;
 
 class Clock {
 private:
@@ -107,6 +108,7 @@ public:
 class Board{
 	friend Engine;
 	friend class Rule;
+    friend xo_UiConnection;
 protected:
 	virtual void start()=0;
 	vector <Dice> dices;
@@ -163,7 +165,7 @@ protected:
 	UIConnection * ui;
     static Engine * instance;
     GameStruct * gs;
-    Engine(Pair size);
+    Engine();
 public:
   static Engine * getInstance();
 	virtual Pair giveMyMove(int index);
@@ -173,7 +175,7 @@ public:
 	virtual void setBoard(Board * b);
 	virtual void setRule(Rule * r);
     virtual void setUIConnection(UIConnection * u);
-    virtual void setGameStruct();
+    virtual void setGameStruct(int x,int y, string name1,string name2,bool isAuto1,bool isAuto2);
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
 	virtual void setPlayers();

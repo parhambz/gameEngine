@@ -17,3 +17,11 @@ JNIEXPORT jobject JNICALL Java_xo_UiConnection_start
 JNIEXPORT jobject JNICALL Java_xo_UiConnection_botMove(JNIEnv *, jobject){
 
 }
+JNIEXPORT jobject JNICALL Java_xo_UiConnection_end
+        (JNIEnv *, jobject){
+    return eng->end();
+}
+JNIEXPORT jobject JNICALL Java_xo_UiConnection_move
+        (JNIEnv *, jobject, jint x, jint y){
+    return eng->move(x,y);
+}
