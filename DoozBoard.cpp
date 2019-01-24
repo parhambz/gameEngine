@@ -20,7 +20,7 @@ void DoozBoard::doMove(Event event) {
     int index=locationToIndex(event.getLocation());
     cells[index]->addPlayer(event.getPlayer());
     cells[index]->setAvailablity(false);
-    if (event.getLocation()!=size.getY()){
+    if (event.getLocation().getY()!=size.getY()){
         Pair temp(event.getLocation().getX(),event.getLocation().getY()+1);
     int indexn=locationToIndex(temp);
         cells[index]->setAvailablity(true);

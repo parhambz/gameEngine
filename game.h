@@ -28,8 +28,8 @@ public:
 	bool checkUptoDown(Pair location);
 	bool checkGhotr1(Pair location);
 	bool checkGhotr2(Pair location);
-	bool checkState(Player& player);
-	bool isOver(vector<Player&> players);
+	bool checkState(Player* player);
+	bool isOver(vector<Player*> players);
 	int playerTurn();
 	int getPlayerTime();
 	bool checkGameStruct(GameStruct g);

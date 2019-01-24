@@ -2,9 +2,11 @@
 // Created by Parham Bagherzadeh on 1/21/2019 AD.
 //
 #include "engine.h"
-Board * Board::istance= nullptr;
+Board * Board::instance = nullptr;
+
+
 Pair Board::indexToLocation(int index) {
-    Pair location(i/size.getY(),i%size.getY());
+    Pair location(index/(size.getY()),index%size.getY() );
     return location;
 }
 int Board::locationToIndex(Pair location) {

@@ -21,7 +21,7 @@
 				Pair p(location.getX() + i, location.getY());
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -42,7 +42,7 @@
 				Pair p(location.getX() - i, location.getY());
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -74,7 +74,7 @@
 				Pair p(location.getX(), location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -95,7 +95,7 @@
 				Pair p(location.getX(), location.getY() - i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -126,7 +126,7 @@
 				Pair p(location.getX() + i, location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -147,7 +147,7 @@
 				Pair p(location.getX() - i, location.getY() - i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -178,7 +178,7 @@
 				Pair p(location.getX() - i, location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -199,7 +199,7 @@
 				Pair p(location.getX() + i, location.getY() - i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
-				if (board->cells[currentCellindex]->getPlayers[0] == board->cells[playerIndex]->getPlayers[0]) {
+				if ((board->cells[currentCellindex]->getPlayers())[0] == (board->cells[playerIndex]->getPlayers())[0]) {
 					Count++;
 					continue;
 				}
@@ -222,20 +222,20 @@
 		}
 	}
 
-	 bool DoozRule::checkState(Player& player) {
+	 bool DoozRule::checkState(Player* player) {
 
-		if (checkLefttoRight(player.getLocation())) {
+		if (checkLefttoRight(player->getLocation())) {
 			return true;
 		}
-		else if (checkUptoDown(player.getLocation())) {
-			return true;
-		}
-
-		else if (checkGhotr1(player.getLocation())) {
+		else if (checkUptoDown(player->getLocation())) {
 			return true;
 		}
 
-		else if (checkGhotr2(player.getLocation())) {
+		else if (checkGhotr1(player->getLocation())) {
+			return true;
+		}
+
+		else if (checkGhotr2(player->getLocation())) {
 			return true;
 		}
 		else {
@@ -243,9 +243,9 @@
 		}
 	}
 
- bool DoozRule::isOver(vector<Player&> players) {
+ bool DoozRule::isOver(vector<Player*> players) {
 		for (auto iter = players.begin(); iter != players.end(); iter++) {
-			if ((*iter).getState() == 2) {
+			if ((*iter)->getState() == 2) {
 				return true;
 			}
 			else {

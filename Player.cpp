@@ -6,7 +6,7 @@ Player::Player(int index, Pair p, string name, int state):
 	index(index), location(p) , name(name) , state(state) {}
 
 void Player::setLocation(Event move) {
-	location = move.getLocation;
+	location = move.getLocation();
 	addMove(move);
 }
 

@@ -3,6 +3,7 @@
 //
 
 #include "engine.h"
+
 Engine * Engine::instance= nullptr;
 Pair Engine::giveMyMove(int index) {
     return ui->giveMove(index);
@@ -25,16 +26,16 @@ void Engine::setRule(Rule * r) {
 }
 Engine* Engine::getInstance() {
     if (instance!= nullptr){
-        return this->instance;
+        return instance;
     }else{
         instance=new Engine();
     }
 }
 void Engine::addPlayer(string name, bool isAuto,int index) {
     if (!isAuto) {
-        this->players.push_back(new RealPlayer(index,Pair (-1,-1),name,0));
+        this->players.push_back( new RealPlayer(index,Pair (-1,-1),name,0) ); // parham ma Real Player ro bordim to game bara hamin nemitoonim injabesazimesh !
     }else{
-        this->players.push_back(new AutoPlayer(index,Pair (-1,-1),name,0));
+        this->players.push_back( new AutoPlayer(index,Pair (-1,-1),name,0) );
     }
     }
 Event Engine::askMove(int index) {
@@ -46,7 +47,7 @@ void Engine::start() {
     board->start();
     int turn=0;
 
-    while(!rule->isOver()){
+    while(!rule->isOver(players)){
         turn =rule->playerTurn();
         sendDiceToUI(board->dices);
         int seconds=rule->getPlayerTime();
@@ -72,7 +73,7 @@ void Engine::start() {
             players[turn]->setLocation(mv);
         }
         for (int i=0;i<players.size();i++){
-            if(players[i]->state!=rule->checkState(players[i])){
+            if(players[i]->state!=rule->checkState(players[i])){  
                 players[i]->state=rule->checkState(players[i]);
                 ui->showPlayerState(players[i]);
             }
@@ -96,7 +97,7 @@ Engine::~Engine() {
 }
 void Engine::setPlayers() {
     for(int i=0;i<gs->playersNames.size();i++){
-        addPlayer(gs->playersNames[i],gs->autoStates[i],i);
+        addPlayer(gs->playersNames[i],gs->isAuto[i],i);
     }
 }
 Board* Engine::getBoardInstance() {return board;}

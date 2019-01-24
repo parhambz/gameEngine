@@ -50,13 +50,24 @@ protected:
 public:
 	
 	virtual bool checkMove(Event move)=0;
-	virtual bool checkState(Player& player)=0;
-	virtual bool isOver(vector<Player&> players)=0;
+	virtual bool checkState(Player* player)=0;
+	virtual bool isOver(vector<Player*> players)=0;
 	virtual int playerTurn() = 0;
 	virtual int getPlayerTime()=0;
 	virtual bool checkGameStruct(GameStruct g) = 0;
 };
 
+class Pair {
+private:
+	int x;
+	int y;
+public:
+	Pair(int x , int y );
+	virtual int getX();
+	virtual int getY();
+	virtual void setX(int x);
+	virtual void setY(int y);
+};
 
 
 class Event {
@@ -64,25 +75,16 @@ class Event {
 private:
 	Player* player;
 	Pair loacation;
-	Event(Pair pair , Player* player);
+	
 public:
+	Event(Pair pair, Player* player);
 	virtual Player* getPlayer();
 	virtual void    setPlayer(Player* player);
 	virtual Pair    getLocation();
 	virtual void    setLocation(Pair pair);
 };
 
-class Pair{
-private:
-	int x;
-	int y;
-public:
-	Pair(int x=0,int y =0);
-	virtual int getX();
-	virtual int getY();
-	virtual void setX(int x);
-	virtual void setY(int y);
-};
+
 
 class Cell {
 	friend Board;
@@ -90,7 +92,7 @@ class Cell {
 private:
 	vector<Player *> players;
 	Pair location;
-	Cell(Pair location,bool availablity= true);
+	Cell(Pair location,bool availablity);
 	bool availablity;
 
 public:
@@ -169,7 +171,7 @@ public:
 	virtual Pair giveMyMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual void addPlayer(string name,bool isAuto);
+	virtual void addPlayer(string name,bool isAuto, int index);
 	virtual void setBoard(Board * b);
 	virtual void setRule(Rule * r);
     virtual void setUIConnection(UIConnection * u);

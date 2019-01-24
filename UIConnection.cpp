@@ -6,10 +6,14 @@
 // Created by Parham Bagherzadeh on 1/22/2019 AD.
 //
 #include "engine.h"
+#include <iostream>
+using namespace std;
+
+
 UIConnection* UIConnection::instance=nullptr;
 void UIConnection::showPlayersStates(vector<Pair> states) {
     string str;
-    for(int i=0;i<states.size();i++){
+    for(int i=0;i<states.size();i++){ // parham roo in warining mide (kolan har jaE ke az function size e vector estefade kardi)
         if(states[i].getY()==0){
             str=="pending";
         }else if(states[i].getY()==1){
@@ -36,7 +40,7 @@ void UIConnection::setClock(int seconds) {
     int clock =seconds;
 }
 void UIConnection::movePlayer(Event event) {
-    cout<<"player "<<event.getPlayer().name<<"moved to"<<event.getLocation().getX()<<" "<<event.getLocation().getY()<<endl;
+    cout<<"player "<<(event.getPlayer())->getName()<<"moved to"<<event.getLocation().getX()<<" "<<event.getLocation().getY()<<endl;
 }
 GameStruct & UIConnection::giveStartData() {
     cout<<"number of players : ?";
@@ -78,12 +82,12 @@ Pair & UIConnection::giveMove(int index) {
     int y;
     cin>>y;
     Pair loc(x,y);
-    return pair;
+    return loc;
 }
 void UIConnection::showDice(vector<Dice> dices) {
     cout<<"dices -> ";
     for (int i=0;i<dices.size();i++){
-        cout<<dices[i]<<"   ";
+        cout<<dices[i]<<"   ";  
     }
     cout<<endl;
 }
