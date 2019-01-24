@@ -163,7 +163,7 @@ protected:
 	UIConnection * ui;
     static Engine * instance;
     GameStruct * gs;
-    Engine(Pair size);
+    Engine();
 public:
   static Engine * getInstance();
 	virtual Pair giveMyMove(int index);

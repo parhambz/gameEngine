@@ -4,6 +4,8 @@
 
 #include "game.h"
 
+DoozBoard::DoozBoard(Pair size):Board(size){}
+
 void DoozBoard::start() {
     for (int i=0;i<cells.size();i++){
         cells[i]->setAvailablity(false);

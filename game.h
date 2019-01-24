@@ -10,9 +10,13 @@
 #include "engine.h"
 
 class DoozBoard :public Board{
+
     virtual void start();
     virtual void createDice();
     virtual void doMove(Event event);
+
+public:
+	DoozBoard(Pair size);
 };
 
 class DoozRule :public Rule {

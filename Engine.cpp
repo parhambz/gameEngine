@@ -8,11 +8,7 @@ Pair Engine::giveMyMove(int index) {
     return ui->giveMove(index);
 }
 Engine::Engine(){
-    setRule();
-    setUIConnection();
-    setGameStruct();
-    setBoard();
-    setPlayers();
+    
 }
 void Engine::setGameStruct() {
     *gs=ui->giveStartData();
