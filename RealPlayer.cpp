@@ -7,8 +7,8 @@ RealPlayer::RealPlayer (int index, Pair p, string name, int state):
 
 Event RealPlayer::move() {
 
-	Pair p = getEngine()->giveMyMove(getIndex());
-	Event move(p,this); // ?
+	Pair * p = getEngine()->giveMyMove(getIndex());
+	Event move(*p,this); // ?
 
 	return move;
 }

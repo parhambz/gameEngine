@@ -4,6 +4,8 @@
 
 #include "game.h"
 
+DoozBoard::DoozBoard(Pair size):Board(size){}
+
 void DoozBoard::start() {
     for (int i=0;i<cells.size();i++){
         cells[i]->setAvailablity(false);
@@ -18,9 +20,10 @@ void DoozBoard::doMove(Event event) {
     int index=locationToIndex(event.getLocation());
     cells[index]->addPlayer(event.getPlayer());
     cells[index]->setAvailablity(false);
-    if (event.getLocation()!=size.getY()){
+    if (event.getLocation().getY()!=size.getY()-1){
+		cout << "asdasdas" << endl;
         Pair temp(event.getLocation().getX(),event.getLocation().getY()+1);
     int indexn=locationToIndex(temp);
-        cells[index]->setAvailablity(true);
+        cells[indexn]->setAvailablity(true);
     }
 }

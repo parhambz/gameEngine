@@ -22,7 +22,7 @@ bool Cell::isAvailable() {
 void Cell::removePlayer(int index) {
 
     for (int i=0 ;i<players.size();i++){
-        if(players[i]->index==index){
+        if(players[i]->getIndex()==index){
             players.erase(players.begin()+i);
         }
     }

@@ -5,6 +5,7 @@
 #endif //GAMEENGINE_ENGINE_H
 #include <vector>
 #include <string>
+#include<iostream>
 using namespace std;
 
 class GameStruct;
@@ -50,13 +51,24 @@ protected:
 public:
 	
 	virtual bool checkMove(Event move)=0;
-	virtual bool checkState(Player& player)=0;
-	virtual bool isOver(vector<Player&> players)=0;
+	virtual bool checkState(Player* player)=0;
+	virtual bool isOver(vector<Player*> players)=0;
 	virtual int playerTurn() = 0;
 	virtual int getPlayerTime()=0;
 	virtual bool checkGameStruct(GameStruct g) = 0;
 };
 
+class Pair {
+private:
+	int x;
+	int y;
+public:
+	Pair(int x , int y );
+	virtual int getX();
+	virtual int getY();
+	virtual void setX(int x);
+	virtual void setY(int y);
+};
 
 
 class Event {
@@ -64,25 +76,16 @@ class Event {
 private:
 	Player* player;
 	Pair loacation;
-	Event(Pair pair , Player* player);
+	
 public:
+	Event(Pair pair, Player* player);
 	virtual Player* getPlayer();
 	virtual void    setPlayer(Player* player);
 	virtual Pair    getLocation();
 	virtual void    setLocation(Pair pair);
 };
 
-class Pair{
-private:
-	int x;
-	int y;
-public:
-	Pair(int x=0,int y =0);
-	virtual int getX();
-	virtual int getY();
-	virtual void setX(int x);
-	virtual void setY(int y);
-};
+
 
 class Cell {
 	friend Board;
@@ -90,7 +93,7 @@ class Cell {
 private:
 	vector<Player *> players;
 	Pair location;
-	Cell(Pair location,bool availablity= true);
+	Cell(Pair location,bool availablity);
 	bool availablity;
 
 public:
@@ -115,7 +118,7 @@ protected:
 	static Board * instance;
 	virtual void createDice()=0;
 	virtual void doMove(Event event)=0;
-	static Pair indexToLocation(int index);
+	Pair indexToLocation(int index);
 	
 public:
 	vector <Cell *> cells;
@@ -163,39 +166,40 @@ protected:
 	UIConnection * ui;
     static Engine * instance;
     GameStruct * gs;
-    Engine(Pair size);
+    Engine();
 public:
   static Engine * getInstance();
-	virtual Pair giveMyMove(int index);
+	virtual Pair * giveMyMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual void addPlayer(string name,bool isAuto);
+	virtual void addPlayer(Player * p);
 	virtual void setBoard(Board * b);
 	virtual void setRule(Rule * r);
     virtual void setUIConnection(UIConnection * u);
     virtual void setGameStruct();
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
-	virtual void setPlayers();
     virtual Board* getBoardInstance();
     virtual Rule * getRuleInstance();
+	virtual GameStruct * getGameStruct();
     ~Engine();
 };
 class GameStruct{
 public:
-	Pair BoardSize;
+	Pair * BoardSize;
 	vector <string>  playersNames;
     vector<bool>isAuto;
+	GameStruct();
 };
 class UIConnection{
 	friend Engine;
 private:
 	static UIConnection * instance;
 	static UIConnection * getInstance();
-	virtual Pair & giveMove(int index);
+	virtual Pair * giveMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual GameStruct & giveStartData();
+	virtual GameStruct * giveStartData();
 	virtual void setClock(int seconds);
 	virtual void startClock();
 	virtual void endClock();
