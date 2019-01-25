@@ -11,9 +11,8 @@ Pair * Engine::giveMyMove(int index) {
 Engine::Engine(){
     
 }
-void Engine::setGameStruct() {
-    gs=ui->giveStartData();
-    if(rule->checkGameStruct(*gs)){}else{setGameStruct();}
+void Engine::setGameStruct(GameStruct * gs) {
+    this->gs=gs;
 }
 void Engine::setBoard(Board * b) {
     board=b;
@@ -38,7 +37,7 @@ Event Engine::askMove(int index) {
     return players[index]->move();
 }
 void Engine::sendDiceToUI(vector<Dice> dices) {}
-void Engine::start() {
+/*void Engine::starts() {
     ui->start();
     board->start();
     int turn=0;
@@ -78,8 +77,8 @@ void Engine::start() {
         }
     }
     end();
-}
-void Engine::end() {
+}*/
+/*void Engine::ends() {
     ui->end();
     vector<Pair> states;
     for (int i=0;i<players.size();i++){
@@ -87,7 +86,7 @@ void Engine::end() {
         states.push_back(state);
     }
     ui->showPlayersStates(states);
-}
+}*/
 Engine::~Engine() {
     delete(board);
     delete(rule);
@@ -98,4 +97,49 @@ Board* Engine::getBoardInstance() {return board;}
 Rule* Engine::getRuleInstance() {return rule;}
 GameStruct * Engine::getGameStruct() {
 	return gs;
+}
+
+
+void Engine::start() {
+    board->start();
+}
+bool Engine::isOver(){
+    return rule->isOver();
+}
+
+int Engine::end() {
+    for (int i = 0; i < players.size(); i++) {
+        if (players[i]->state == 2) {
+            return i + 1;
+        }
+    }
+}
+
+bool Engine::move(int x, int y) {
+    int turn = rule->playerTurn();
+    Event mv = new Event(Pair(x, y), players[turn]);
+    if (rule->checkMove(mv)) {
+        board->doMove(mv);
+        players[turn]->setLocation(mv);
+
+        for (int i=0;i<players.size();i++){
+            if (players[i]->getLocation().getX()!=-1) {
+                if (rule->checkState(players[i])) {
+                    players[i]->state = 2;
+                }
+            }
+        }
+        return true;
+    } else {
+        rule->playerTurn(); //choon har bar ke in tabe seda zade mishe mire vase nobate badi
+        return false;
+    }
+}
+
+string Engine::botMove() {
+    int turn = rule->playerTurn();
+    Pair location= players[turn]->move().getLocation();
+    move(location.getX(),location.getY());
+    return (char(location.getX()) - '0') + ':' + (char(location.getY()) - '0');
+
 }

@@ -171,17 +171,20 @@ public:
   static Engine * getInstance();
 	virtual Pair * giveMyMove(int index);
 	virtual void start();
-	virtual void end();
+	virtual int end();
 	virtual void addPlayer(Player * p);
 	virtual void setBoard(Board * b);
 	virtual void setRule(Rule * r);
     virtual void setUIConnection(UIConnection * u);
-    virtual void setGameStruct();
+    virtual void setGameStruct(GameStruct * gs);
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
     virtual Board* getBoardInstance();
     virtual Rule * getRuleInstance();
 	virtual GameStruct * getGameStruct();
+	virtual bool move(int x,int y);
+	bool isOver();
+	string botMove();
     ~Engine();
 };
 class GameStruct{
