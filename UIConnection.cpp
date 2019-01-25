@@ -6,7 +6,6 @@
 // Created by Parham Bagherzadeh on 1/22/2019 AD.
 //
 #include "engine.h"
-#include <iostream>
 using namespace std;
 
 
@@ -14,14 +13,22 @@ UIConnection* UIConnection::instance=nullptr;
 void UIConnection::showPlayersStates(vector<Pair> states) {
     string str;
     for(int i=0;i<states.size();i++){ // parham roo in warining mide (kolan har jaE ke az function size e vector estefade kardi)
-        if(states[i].getY()==0){
-            str=="pending";
-        }else if(states[i].getY()==1){
-            str="loser";
-        }else{
-            str="winner";
-        }
-        cout<<"player "<<states[i].getX()<< "-> "<<str<<endl;
+		switch (states[i].getY())
+		{
+		case 0:
+			str = "pending";
+			break;
+		case 1:
+			str = "loser";
+			break;
+		case 2:
+			str = "winner";
+			break;
+
+		default:
+			break;
+		}
+        cout<<"player "<<states[i].getX()<< "-> "<< str <<endl;
     }
 }
 void UIConnection::start() {
@@ -42,7 +49,7 @@ void UIConnection::setClock(int seconds) {
 void UIConnection::movePlayer(Event event) {
     cout<<"player "<<(event.getPlayer())->getName()<<"moved to"<<event.getLocation().getX()<<" "<<event.getLocation().getY()<<endl;
 }
-GameStruct & UIConnection::giveStartData() {
+GameStruct * UIConnection::giveStartData() {
     cout<<"number of players : ?";
     int n;
     cin>>n;
@@ -52,8 +59,8 @@ GameStruct & UIConnection::giveStartData() {
     cout<<"enter y of board"<<endl;
     int y;
     cin>>y;
-    GameStruct gs;
-    gs.BoardSize(new Pair(x,y));
+    GameStruct * gs=new GameStruct();
+    gs->BoardSize=new Pair(x,y);
     for (int i=0;i<n;i++){
         cout<<"enter name of player"<<i<<endl;
         string name;
@@ -62,11 +69,11 @@ GameStruct & UIConnection::giveStartData() {
         int isAuto;
         cin>>isAuto;
 
-        gs.playersNames.push_back(name);
+        gs->playersNames.push_back(name);
         if(isAuto==1){
-            gs.isAuto.push_back(true);
+            gs->isAuto.push_back(true);
         }else{
-            gs.isAuto.push_back(false);
+            gs->isAuto.push_back(false);
         }
     }
     return gs;
@@ -74,20 +81,20 @@ GameStruct & UIConnection::giveStartData() {
 UIConnection* UIConnection::getInstance() {
     return instance;
 }
-Pair & UIConnection::giveMove(int index) {
+Pair * UIConnection::giveMove(int index) {
     cout<<"player "<<index+1<<"enter x"<<endl;
     int x;
     cin>>x;
     cout<<"player "<<index+1<<"enter y"<<endl;
     int y;
     cin>>y;
-    Pair loc(x,y);
+    Pair * loc=new Pair(x,y);
     return loc;
 }
 void UIConnection::showDice(vector<Dice> dices) {
     cout<<"dices -> ";
     for (int i=0;i<dices.size();i++){
-        cout<<dices[i]<<"   ";  
+        cout<<dices[i].getValue()<<"   ";  
     }
     cout<<endl;
 }

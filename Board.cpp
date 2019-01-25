@@ -10,12 +10,12 @@ Pair Board::indexToLocation(int index) {
     return location;
 }
 int Board::locationToIndex(Pair location) {
-    return location.getY()*this->size.getY()+location.getX();
+    return location.getX()*this->size.getY()+location.getY();
 }
 Board::Board(Pair size):size(size){
     int vectorSize=size.getY()*size.getY();
     for(int i=0;i<vectorSize;i++){
-        cells.push_back(new Cell(Board::indexToLocation(i)));
+        cells.push_back(new Cell(Board::indexToLocation(i) , false));
     }
 }
 int Board::getSize() { return cells.size();}

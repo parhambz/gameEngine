@@ -5,6 +5,7 @@
 #endif //GAMEENGINE_ENGINE_H
 #include <vector>
 #include <string>
+#include<iostream>
 using namespace std;
 
 class GameStruct;
@@ -117,7 +118,7 @@ protected:
 	static Board * instance;
 	virtual void createDice()=0;
 	virtual void doMove(Event event)=0;
-	static Pair indexToLocation(int index);
+	Pair indexToLocation(int index);
 	
 public:
 	vector <Cell *> cells;
@@ -168,36 +169,37 @@ protected:
     Engine();
 public:
   static Engine * getInstance();
-	virtual Pair giveMyMove(int index);
+	virtual Pair * giveMyMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual void addPlayer(string name,bool isAuto, int index);
+	virtual void addPlayer(Player * p);
 	virtual void setBoard(Board * b);
 	virtual void setRule(Rule * r);
     virtual void setUIConnection(UIConnection * u);
     virtual void setGameStruct();
 	virtual Event askMove(int index);
     virtual void sendDiceToUI(vector<Dice> dices);
-	virtual void setPlayers();
     virtual Board* getBoardInstance();
     virtual Rule * getRuleInstance();
+	virtual GameStruct * getGameStruct();
     ~Engine();
 };
 class GameStruct{
 public:
-	Pair BoardSize;
+	Pair * BoardSize;
 	vector <string>  playersNames;
     vector<bool>isAuto;
+	GameStruct();
 };
 class UIConnection{
 	friend Engine;
 private:
 	static UIConnection * instance;
 	static UIConnection * getInstance();
-	virtual Pair & giveMove(int index);
+	virtual Pair * giveMove(int index);
 	virtual void start();
 	virtual void end();
-	virtual GameStruct & giveStartData();
+	virtual GameStruct * giveStartData();
 	virtual void setClock(int seconds);
 	virtual void startClock();
 	virtual void endClock();

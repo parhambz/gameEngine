@@ -23,6 +23,6 @@ void DoozBoard::doMove(Event event) {
     if (event.getLocation().getY()!=size.getY()){
         Pair temp(event.getLocation().getX(),event.getLocation().getY()+1);
     int indexn=locationToIndex(temp);
-        cells[index]->setAvailablity(true);
+        cells[indexn]->setAvailablity(true);
     }
 }

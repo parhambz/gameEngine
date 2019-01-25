@@ -39,8 +39,9 @@ public:
 
 class RealPlayer : public Player {
 private:
-	RealPlayer(int index, Pair p, string name, int state);
+	
 public:
+	RealPlayer(int index, Pair p, string name, int state);
 	virtual Event move();
 
 };
