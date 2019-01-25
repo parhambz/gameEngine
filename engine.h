@@ -62,6 +62,7 @@ public:
 
 class Event {
 	friend Player;
+    friend Engine;
 private:
 	Player* player;
 	Pair loacation;
