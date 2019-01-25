@@ -54,7 +54,6 @@ void Engine::start() {
         Event mv=players[turn]->move();
 		
         while(!rule->checkMove(mv)){
-			cout << mv.getLocation().getX() << endl;
             if(players[turn]->clk.getTime()<0){
                 players[turn]->clk.puase();
                 ui->endClock();

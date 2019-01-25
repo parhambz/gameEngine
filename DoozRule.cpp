@@ -78,7 +78,7 @@
  bool DoozRule::checkUptoDown(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
-			if (location.getY() + i <= 6)
+			if (location.getY() + i <= 5)
 			{
 				Pair p(location.getX(), location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
@@ -137,7 +137,7 @@
  bool DoozRule::checkGhotr1(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
-			if (location.getY() + i <= 6 && location.getX() + i <= 6)
+			if (location.getY() + i <= 5 && location.getX() + i <= 5)
 			{
 				Pair p(location.getX() + i, location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
@@ -193,7 +193,7 @@
  bool DoozRule::checkGhotr2(Pair location) {
 		int Count = 0;
 		for (int i = 1; i < 4; i++) {
-			if (location.getY() + i <= 6 && location.getX() - i >= 0)
+			if (location.getY() + i <= 5 && location.getX() - i >= 0)
 			{
 				Pair p(location.getX() - i, location.getY() + i);
 				int currentCellindex = board->locationToIndex(p);
@@ -218,7 +218,7 @@
 
 		for (int i = 1; i < 4; i++)
 		{
-			if (location.getY() - i >= 0 && location.getX() + i <= 6) {
+			if (location.getY() - i >= 0 && location.getX() + i <= 5) {
 				Pair p(location.getX() + i, location.getY() - i);
 				int currentCellindex = board->locationToIndex(p);
 				int playerIndex = board->locationToIndex(location);
