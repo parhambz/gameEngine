@@ -64,12 +64,13 @@
 				break;
 			}
 
-			if (Count >= 3) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		}
+
+		if (Count >= 3) {
+			return true;
+		}
+		else {
+			return false;
 		}
 
 	}
@@ -123,12 +124,13 @@
 				break;
 			}
 
-			if (Count >= 3) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		}
+
+		if (Count >= 3) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
@@ -179,13 +181,12 @@
 			else {
 				break;
 			}
-
-			if (Count >= 3) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		}
+		if (Count >= 3) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
@@ -237,13 +238,12 @@
 			else {
 				break;
 			}
-
-			if (Count >= 3) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		}
+		if (Count >= 3) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
