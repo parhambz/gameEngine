@@ -104,7 +104,7 @@ void Engine::start() {
     board->start();
 }
 bool Engine::isOver(){
-    return rule->isOver();
+    return rule->isOver(this->players);
 }
 
 int Engine::end() {
@@ -117,10 +117,10 @@ int Engine::end() {
 
 bool Engine::move(int x, int y) {
     int turn = rule->playerTurn();
-    Event mv = new Event(Pair(x, y), players[turn]);
-    if (rule->checkMove(mv)) {
-        board->doMove(mv);
-        players[turn]->setLocation(mv);
+    Event* mv = new Event(Pair(x, y), players[turn]);
+    if (rule->checkMove(*mv)) {
+        board->doMove(*mv);
+        players[turn]->setLocation(*mv);
 
         for (int i=0;i<players.size();i++){
             if (players[i]->getLocation().getX()!=-1) {
@@ -136,10 +136,11 @@ bool Engine::move(int x, int y) {
     }
 }
 
-string Engine::botMove() {
+int Engine::botMove() {
     int turn = rule->playerTurn();
     Pair location= players[turn]->move().getLocation();
     move(location.getX(),location.getY());
-    return (char(location.getX()) - '0') + ':' + (char(location.getY()) - '0');
+
+	return location.getX() * 10 + location.getY();
 
 }

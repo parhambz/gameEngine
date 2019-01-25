@@ -183,8 +183,8 @@ public:
     virtual Rule * getRuleInstance();
 	virtual GameStruct * getGameStruct();
 	virtual bool move(int x,int y);
-	bool isOver();
-	string botMove();
+	virtual bool isOver();
+	virtual int botMove();
     ~Engine();
 };
 class GameStruct{
